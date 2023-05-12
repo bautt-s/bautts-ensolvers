@@ -13,6 +13,6 @@ model Note {
   updatedAt   DateTime  @updatedAt
   title       String    @db.VarChar(80)
   content     String?
-  category    String?
+  category    String[]
   active      Boolean
 }
