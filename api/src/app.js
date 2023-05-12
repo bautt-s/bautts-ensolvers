@@ -1,10 +1,11 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const routes = require('./routes/index.js');
+const cors = require('cors');
 
 const server = express();
 
+server.use(cors());
 server.use(express.json());
 server.use(cookieParser());
 
