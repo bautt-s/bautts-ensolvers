@@ -1,0 +1,4 @@
+# Backend Server
+This README.md will be used to illustrate the structure of the API of the project.
+## Structure
+This API uses Express.js, Node.js and Prisma as an ORM for querying the PostgreSQL database. The DB is hosted remotely using the Railway service, its credentials are stored in the .env (I decided to remove it from the .gitignore file due to the nature of the project). In the Prisma folder you can find a schema of the database models, which also connects the ORM to the remote database. In the src project, the main config for the API is found, along with the routes. The main and only endpoint, is '/notes': here we define all possible requests using Express and Prisma in order to query the database and get the needed data or alter it with our own.
