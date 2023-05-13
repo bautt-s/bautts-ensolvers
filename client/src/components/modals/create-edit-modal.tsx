@@ -70,7 +70,7 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
 
     // simple error handling is implemented through the alert() modals.
     const handleSave = async () => {
-        if (id) {
+        if (!id) {
             fetch(backendRoute, {
                 method: 'POST',
                 headers: {
