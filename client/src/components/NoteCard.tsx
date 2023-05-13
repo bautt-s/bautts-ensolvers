@@ -26,13 +26,14 @@ const NoteCard: React.FC<NoteCardType> = (props) => {
 
     return (
         <>
-            <div key={index} className='flex flex-row w-[540px] rounded-lg px-[5px] py-[5px] border-[2px] hover:border-[#FCA311]'>
+            <div key={index} className='flex flex-row w-[440px] md:w-[540px] rounded-lg px-[5px] py-[5px] border-[2px] hover:border-[#FCA311]'>
                 <div className='flex flex-row items-center'>
                     <FaStickyNote className='text-6xl text-[#14213D] hover:scale-105 transition-transform duration-300' onClick={() => setModalNote(true)} />
 
                     <div className='flex flex-col ml-[10px]'>
                         <h1 className='font-bold'>{title}</h1>
-                        <span className=''>{content.length > 45 ? content.slice(0, 45) + '...' : content}</span>
+                        <span className='hidden md:contents'>{content.length > 45 ? content.slice(0, 45) + '...' : content}</span>
+                        <span className='contents md:hidden'>{content.length > 30 ? content.slice(0, 30) + '...' : content}</span>
                     </div>
                 </div>
 

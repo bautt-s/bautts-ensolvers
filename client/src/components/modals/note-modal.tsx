@@ -13,7 +13,7 @@ const NoteModal: React.FC<NoteModalType> = (props) => {
         <div className="w-screen h-screen absolute top-0 left-0 flex items-center justify-center">
             <div className='bg-[#00000060] w-screen h-screen absolute z-1' onClick={() => openNote(false)}></div>
 
-            <div className="bg-[#F4CE5E] text-center flex flex-col justify-center w-[600px] z-50 rounded-sm font-mono px-[20px] pb-[10px]">
+            <div className="bg-[#F4CE5E] text-center flex flex-col justify-center w-[400px] sm:w-[600px] z-50 rounded-sm font-mono px-[20px] pb-[10px]">
                 <div className="bg-[#E1544B] w-[200px] h-[50px] flex mx-auto relative bottom-[30px] opacity-70 skew-x-6 skew-y-2"></div>
                 <h1 className="font-bold text-3xl">{title}</h1>
                 <p className="text-xl mt-[20px] w-full">{content}</p>

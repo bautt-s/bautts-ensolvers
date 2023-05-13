@@ -108,7 +108,7 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
 
     return (
         <div className="w-screen h-screen absolute top-0 left-0 bg-[#00000060] flex items-center justify-center">
-            <div className="bg-white flex flex-col w-[540px] px-[40px] py-[25px] rounded-lg shadow-xl">
+            <div className="bg-white flex flex-col w-[400px] sm:w-[540px] px-[40px] py-[25px] rounded-lg shadow-xl">
                 <h1 className="text-4xl font-semibold">Create/Edit Note</h1>
 
                 <div className="flex flex-row mt-[25px] items-center">

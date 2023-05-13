@@ -8,10 +8,10 @@ const Filter: React.FC<FilterType> = (props) => {
     const { categories, setFilteredNotes } = props
 
     return (
-        <div className="flex flex-row items-center ml-[50px] mt-[40px]">
+        <div className="flex flex-row items-center ml-[20px] sm:ml-[50px] mt-[40px]">
             <span>Category:</span>
 
-            <select className="border-2 ml-[10px] w-[200px]" onChange={(e) => setFilteredNotes(e.target.value)}>
+            <select className="border-2 ml-[10px] w-[200px] bg-white" onChange={(e) => setFilteredNotes(e.target.value)}>
                 <option value=''>All</option>
                 {categories.map(c => {
                     return (

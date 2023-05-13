@@ -44,10 +44,10 @@ const Home: React.FC = () => {
     }, [])
 
     return (
-        <div className="w-screen h-screen bg-[#E5E5E5] flex justify-center items-center py-[40px]">
-            <div className="w-[1200px] h-full bg-white rounded-lg shadow-2xl">
-                <div className="bg-[#14213D] flex flex-row py-[40px] px-[40px] rounded-t-lg">
-                    <h1 className="text-4xl font-semibold text-[#FFFCF2]">{!archived ? 'My Notes' : 'Archived Notes'}</h1>
+        <div className="w-screen h-screen bg-[#E5E5E5] flex justify-center items-center xl:py-[40px]">
+            <div className="w-[1200px] h-full bg-white xl:rounded-lg shadow-2xl">
+                <div className="bg-[#14213D] flex flex-row py-[40px] px-[20px] sm:px-[40px] xl:rounded-t-lg">
+                    <h1 className="text-2xl sm:text-4xl font-semibold text-[#FFFCF2]">{!archived ? 'My Notes' : 'Archived Notes'}</h1>
 
                     <div className="flex flex-row ml-auto">
                         {!archived ?
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
                     {filteredNotes === '' ? !archived ?
                         (activeNotes.length ?
                             <div className='flex overflow-y-auto'>
-                                <div className='mt-[40px] grid grid-cols-2 gap-[25px] items-center'>
+                                <div className='mt-[40px] grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center'>
                                     {activeNotes.map((n: NotesType, index: number) => {
                                         return <NoteCard index={index} title={n.title} content={n.content} id={n.id} active={n.active} category={n.category} />
                                     })}
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
 
                         : (archivedNotes.length ?
                             <div className='flex overflow-y-auto'>
-                                <div className='mt-[40px] grid grid-cols-2 gap-[25px] items-center'>
+                                <div className='mt-[40px] grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center'>
                                     {archivedNotes.map((n: NotesType, index: number) => {
                                         return <NoteCard index={index} title={n.title} content={n.content} id={n.id} active={n.active} category={n.category} />
                                     })}
@@ -90,7 +90,7 @@ const Home: React.FC = () => {
                         : !archived ?
                         (activeNotes.length ?
                             <div className='flex overflow-y-auto'>
-                                <div className='mt-[40px] grid grid-cols-2 gap-[25px] items-center'>
+                                <div className='mt-[40px] grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center'>
                                     {activeNotes.filter((n: NotesType) => n.category.includes(filteredNotes)).map((n: NotesType, index: number) => {
                                         return <NoteCard index={index} title={n.title} content={n.content} id={n.id} active={n.active} category={n.category} />
                                     })}
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
 
                         : (archivedNotes.length ?
                             <div className='flex overflow-y-auto'>
-                                <div className='mt-[40px] grid grid-cols-2 gap-[25px] items-center'>
+                                <div className='mt-[40px] grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center'>
                                     {archivedNotes.filter((n: NotesType) => n.category.includes(filteredNotes)).map((n: NotesType, index: number) => {
                                         return <NoteCard index={index} title={n.title} content={n.content} id={n.id} active={n.active} category={n.category} />
                                     })}
