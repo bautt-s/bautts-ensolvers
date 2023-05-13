@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { FaTag } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
 
+// needed to type props. the optional parameters are used
+// when the user opens the modal for edition purposes
 type CreateModalType = {
     id?: number,
     noteTitle?: string,
@@ -10,6 +12,7 @@ type CreateModalType = {
     openCreate: Function
 }
 
+// interface needed to type the input attributes
 interface inputInterface {
     title: string,
     content: string,
@@ -18,13 +21,18 @@ interface inputInterface {
 
 const CreateEdit: React.FC<CreateModalType> = (props) => {
     const { openCreate, id, noteTitle, noteContent, noteCategory } = props
-    const [categoryInput, setCategoryInput] = useState('')
+
+    const [categoryInput, setCategoryInput] = useState('') // state used to keep track of the 'add category' input
+
+    // state where all the input is stored. if this modal is opened for creation, it all
+    // starts empty new. if it is used for edition, it uses the note's current values
     const [input, setInput] = useState<inputInterface>({
         title: noteTitle ? noteTitle : '',
         content: noteContent ? noteContent : '',
         category: noteCategory ? noteCategory : []
     })
 
+    // dynamic handling of input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, att: string) => {
         setInput({
             ...input,
@@ -32,6 +40,7 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
         })
     }
 
+    // handling of the 'add category' input changes
     const handleCategory = () => {
         if (!input.category.find(c => c === categoryInput)) {
             setInput({
@@ -43,6 +52,7 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
         setCategoryInput('')
     }
 
+    // handling of deleting a category in the general categories field
     const deleteCategory = (category: string) => {
         const updatedCategories = input.category.filter(c => c !== category);
         setInput({
@@ -51,6 +61,11 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
         });
     }
 
+    // handling of finally pressing the 'save' button. if this is used for
+    // creation, than we send a POST request to the API. if this is edition,
+    // we use the PUT route with the correspondant ID. 
+
+    // simple error handling is implemented through the alert() modals.
     const handleSave = async () => {
         if (id) {
             fetch('http://localhost:3001/notes/', {

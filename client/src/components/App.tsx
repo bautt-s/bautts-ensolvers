@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// originally, this would have been a login screen, but time did not help
 function App() {
 	return (
 		<div className="w-screen h-screen flex justify-center items-center bg-[#14213D]">

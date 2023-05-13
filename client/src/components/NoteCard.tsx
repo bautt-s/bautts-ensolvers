@@ -1,10 +1,11 @@
 import { FaStickyNote, FaArchive, FaPen, FaTrash, FaUpload } from 'react-icons/fa'
-import CreateEdit from './create-edit-modal'
-import ModalArchive from './modal-archive'
-import DeleteModal from './delete-modal'
-import NoteModal from './note-modal'
+import CreateEdit from './modals/create-edit-modal'
+import ModalArchive from './modals/modal-archive'
+import DeleteModal from './modals/delete-modal'
+import NoteModal from './modals/note-modal'
 import { useState } from 'react'
 
+// need to type props
 type NoteCardType = {
     id: number,
     title: string,
@@ -16,6 +17,8 @@ type NoteCardType = {
 
 const NoteCard: React.FC<NoteCardType> = (props) => {
     const { id, title, content, active, category, index } = props
+
+    // control the opened/closed state of each modal
     const [modalArchive, setModalArchive] = useState(false)
     const [modalCreate, setModalCreate] = useState(false)
     const [modalDelete, setModalDelete] = useState(false)

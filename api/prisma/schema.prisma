@@ -1,3 +1,6 @@
+// this is the database schema, where I can set up the db models and
+// update the postgresql db remotely via npx prisma db push
+
 generator client {
   provider = "prisma-client-js"
 }

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import NoteCard from './NoteCard'
-import CreateEdit from './create-edit-modal'
+import CreateEdit from './modals/create-edit-modal'
 import Filter from './filter'
 
+// here I define a type for the notes, in order to have a well 
+// typed structure when rendering each one from the general array
 type NotesType = {
     id: number,
     createdAt: Date,
@@ -15,14 +17,18 @@ type NotesType = {
 
 const Home: React.FC = () => {
     const [notes, setNotes] = useState([])
-    const [archived, setArchived] = useState(false)
-    const [modalCreate, setModalCreate] = useState(false)
-    const [filteredNotes, setFilteredNotes] = useState('')
+    const [archived, setArchived] = useState(false) // state to change the view from active to archived notes, or viceversa
+    const [modalCreate, setModalCreate] = useState(false) // state to open/close creation/edition modal
+    const [filteredNotes, setFilteredNotes] = useState('') // state where the category filtering is kept
 
-    const archivedNotes = notes?.filter((n: NotesType) => n.active === false)
-    const activeNotes = notes?.filter((n: NotesType) => n.active === true)
+    const archivedNotes = notes?.filter((n: NotesType) => n.active === false) // array of archived notes with filter applied
+    const activeNotes = notes?.filter((n: NotesType) => n.active === true) // array of active notes with filter applied
+
+    // array of all categories, needed for the filtering selectBox to render as options
+    // it selects categories from archived or active notes based on the current view
     const allCategories = archived ? [...new Set(archivedNotes.flatMap((n: NotesType) => n.category))] : [...new Set(activeNotes.flatMap((n: NotesType) => n.category))]
 
+    // use of the hook to get all notes in initial rendering
     useEffect(() => {
         const fetchNotes = async () => {
             const response = await fetch('http://localhost:3001/notes/');

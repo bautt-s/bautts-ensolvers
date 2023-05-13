@@ -1,3 +1,4 @@
+// needed to type props
 type FilterType = {
     categories: string[],
     setFilteredNotes: Function

@@ -1,3 +1,4 @@
+// needed to type props
 type DeleteModalType = {
     openDelete: Function,
     id: number

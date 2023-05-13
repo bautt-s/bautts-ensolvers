@@ -1,3 +1,4 @@
+// needed to type props
 type ModalArchiveType = {
     openArchive: Function,
     id: number,
@@ -7,6 +8,8 @@ type ModalArchiveType = {
 const ModalArchive: React.FC<ModalArchiveType> = (props) => {
     const { openArchive, id, active } = props
 
+    // handling of the archive confirmation button, using the correspondant PUT request
+    // (/enable or /disable routes sending the needed ID via request body)
     const handleArchive = async () => {
         if (active) {
             fetch(`http://localhost:3001/notes/disable`, {

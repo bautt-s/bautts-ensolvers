@@ -2,17 +2,10 @@ const express = require('express');
 const prisma = require('../../prisma/prisma.js')
 const router = express.Router();
 
+// main route to get all notes
 router.get('/', async (req, res) => {
     try {
-        const { title } = req.query
-
-        const notes = await prisma.note.findMany({
-            where: {
-                title: {
-                    contains: title || ''
-                }
-            }
-        })
+        const notes = await prisma.note.findMany({})
 
         if (notes.length) res.status(200).send(notes);
         else res.status(404).send('ERROR: Could not find any notes');
@@ -21,24 +14,10 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
-    try {
-        const id = parseInt(req.params.id)
-
-        const note = await prisma.note.findUnique({
-            where: { id }
-        })
-
-        note ? res.status(200).send(note) : res.status(404).send("ERROR: Could not find note.");
-    } catch (error) {
-        res.status(400).send('ERROR: There was an unexpected error.')
-    }
-})
-
+// route to create a note
 router.post('/', async (req, res) => {
     try {
         const bodyNote = req.body
-        console.log(req.body)
 
         const createdNote = await prisma.note.create({
             data: {
@@ -56,6 +35,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// enable and disable routes are made to archive/unarchive notes
 router.put('/enable', async (req, res) => {
     try {
         const { id } = req.body
@@ -88,6 +68,7 @@ router.put('/disable', async (req, res) => {
     }
 })
 
+// route needed to edit notes
 router.put('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id)
@@ -110,6 +91,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+// route needed to delete a certain note
 router.delete('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id)
