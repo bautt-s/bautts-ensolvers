@@ -11,4 +11,7 @@ In order to use this project locally, you can clone this repository in your mach
 ## Technologies 💻
 For the backend server, I used Express.js 4.16.1, along with Prisma ORM 4.14.
 For the frontend client, technologies used were React 18.2.6, React Icons 4.8, TypeScript 4.9.5 and Tailwind 3.3.2.
-Remote database is running PostgreSQL 15.3
+Remote database is running PostgreSQL 15.3 in Railway service, while Backend server is hosted on Render.com and Frontend client in Vercel.app
+
+## Planned Features 📝
+Authentication system is missing. It was almost added, but due to time complications, could not be implemented.
