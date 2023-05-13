@@ -24,6 +24,9 @@ const Home: React.FC = () => {
     const archivedNotes = notes?.filter((n: NotesType) => n.active === false) // array of archived notes with filter applied
     const activeNotes = notes?.filter((n: NotesType) => n.active === true) // array of active notes with filter applied
 
+    // backend route to query from, based on if the app is deployed or not
+    const backendRoute = process.env.REACT_APP_DEPLOYED ? 'https://bautts-ensolvers.onrender.com/notes' : 'http://localhost:3001/notes/'
+
     // array of all categories, needed for the filtering selectBox to render as options
     // it selects categories from archived or active notes based on the current view
     const allCategories = archived ? [...new Set(archivedNotes.flatMap((n: NotesType) => n.category))] : [...new Set(activeNotes.flatMap((n: NotesType) => n.category))]
@@ -31,7 +34,7 @@ const Home: React.FC = () => {
     // use of the hook to get all notes in initial rendering
     useEffect(() => {
         const fetchNotes = async () => {
-            const response = await fetch('http://localhost:3001/notes/');
+            const response = await fetch(backendRoute);
             const data = await response.json();
 
             setNotes(data)

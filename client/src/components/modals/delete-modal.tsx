@@ -7,8 +7,11 @@ type DeleteModalType = {
 const DeleteModal: React.FC<DeleteModalType> = (props) => {
     const { openDelete, id } = props
 
+    // backend route to query from, based on if the app is deployed or not
+    const backendRoute = process.env.REACT_APP_DEPLOYED ? 'https://bautts-ensolvers.onrender.com/notes' : 'http://localhost:3001/notes/'
+
     const handleDelete = async () => {
-        await fetch(`http://localhost:3001/notes/${id}`, {
+        await fetch(`${backendRoute}/${id}`, {
             method: 'DELETE'
         })
 

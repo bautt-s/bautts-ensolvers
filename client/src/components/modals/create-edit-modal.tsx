@@ -22,6 +22,9 @@ interface inputInterface {
 const CreateEdit: React.FC<CreateModalType> = (props) => {
     const { openCreate, id, noteTitle, noteContent, noteCategory } = props
 
+    // backend route to query from, based on if the app is deployed or not
+    const backendRoute = process.env.REACT_APP_DEPLOYED ? 'https://bautts-ensolvers.onrender.com/notes' : 'http://localhost:3001/notes/'
+
     const [categoryInput, setCategoryInput] = useState('') // state used to keep track of the 'add category' input
 
     // state where all the input is stored. if this modal is opened for creation, it all
@@ -68,7 +71,7 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
     // simple error handling is implemented through the alert() modals.
     const handleSave = async () => {
         if (id) {
-            fetch('http://localhost:3001/notes/', {
+            fetch(backendRoute, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -88,7 +91,7 @@ const CreateEdit: React.FC<CreateModalType> = (props) => {
                 }
             });
 
-            fetch(`http://localhost:3001/notes/${id}`, {
+            fetch(`${backendRoute}/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

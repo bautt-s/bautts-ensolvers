@@ -8,11 +8,14 @@ type ModalArchiveType = {
 const ModalArchive: React.FC<ModalArchiveType> = (props) => {
     const { openArchive, id, active } = props
 
+    // backend route to query from, based on if the app is deployed or not
+    const backendRoute = process.env.REACT_APP_DEPLOYED ? 'https://bautts-ensolvers.onrender.com/notes' : 'http://localhost:3001/notes/'
+
     // handling of the archive confirmation button, using the correspondant PUT request
     // (/enable or /disable routes sending the needed ID via request body)
     const handleArchive = async () => {
         if (active) {
-            fetch(`http://localhost:3001/notes/disable`, {
+            fetch(`${backendRoute}/disable`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,7 +28,7 @@ const ModalArchive: React.FC<ModalArchiveType> = (props) => {
                 return window.location.reload();
             })
         } else {
-            fetch(`http://localhost:3001/notes/enable`, {
+            fetch(`${backendRoute}/enable`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
